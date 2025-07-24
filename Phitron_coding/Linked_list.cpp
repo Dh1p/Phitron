@@ -37,7 +37,7 @@ void insert_at_head(Node* &head, Node* &tail, int val)
     if(head == NULL)
     {
         head = newNode;
-        tail = newNode;
+        tail = newNode; 
         return;
     }
     newNode->next = head;
