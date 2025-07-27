@@ -7,12 +7,12 @@ using namespace std;
 
 bool isValid(string s)
 {
-     stack<char> st;
+    stack<char> st;
     for (char c : s)
     {
         if(!st.empty())
         {
-            if(c == '1' && st.top() == '0' || c == '0' && st.top() == '1')
+            if(c == '1' && st.top() == '0')
             {
                 st.pop();
             }
