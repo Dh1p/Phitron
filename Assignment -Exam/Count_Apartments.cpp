@@ -24,13 +24,11 @@ bool valid(int i, int j)
     return true;
 }
 
-int bfs(int si, int sj)
+void bfs(int si, int sj)
 {
     queue<pair<int, int>> q;
     q.push({si, sj});
     vis[si][sj] = true;
-
-    int cnt = 1;
 
     while (!q.empty())
     {
@@ -48,11 +46,9 @@ int bfs(int si, int sj)
             {
                 vis[ci][cj] = true;
                 q.push({ci, cj});
-                cnt++;
             }
         }
     }
-    return cnt;
 }
 
 int main()
@@ -68,34 +64,20 @@ int main()
 
     memset(vis, false, sizeof(vis));
 
-    vector<int> apartments;
+    int apartments = 0;
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < m; j++)
         {
             if (grid[i][j] == '.' && !vis[i][j])
             {
-                int rooms = bfs(i, j);
-                apartments.push_back(rooms);
+                bfs(i, j);
+                apartments++;
             }
         }
     }
 
-    if (apartments.empty())
-    {
-        cout << 0 << "\n";
-    }
-    else
-    {
-        sort(apartments.begin(), apartments.end());
-        for (int i = 0; i < apartments.size(); i++)
-        {
-            cout << apartments[i];
-            if (i + 1 < apartments.size())
-                cout << " ";
-        }
-        cout << "\n";
-    }
-
+    cout << apartments << "\n";
+    
     return 0;
 }
